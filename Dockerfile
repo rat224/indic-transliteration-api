@@ -2,15 +2,20 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY . .
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y build-essential git
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+ && apt-get clean
 
-# Install safe pip + dependencies
-RUN pip install --upgrade pip==23.2.1 setuptools==67.8.0 \
-    && pip install -r requirements.txt
+RUN pip install --upgrade "pip<24.1" setuptools wheel
+
+COPY . /app
+
+RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
-CMD ["python", "app.py"]
+CMD ["python", "apps/api_expose.py"]
