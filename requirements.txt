@@ -1,4 +1,8 @@
+# requirements.txt
+
 pip<24.1
-setuptools<68  # avoid build errors from latest setuptools
-flask
-ai4bharat-transliteration
+setuptools<68
+
+# Required packages
+flask==2.2.5
+ai4bharat-transliteration==0.0.7
