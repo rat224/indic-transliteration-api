@@ -1,26 +1,26 @@
-FROM python:3.9-slim
+# Use compatible Python base image
+FROM python:3.10-slim
 
-WORKDIR /app
-
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     git \
- && apt-get clean
+    && apt-get clean
 
-# Downgrade pip to avoid omegaconf and metadata issues
-RUN pip install --upgrade "pip<24.1" setuptools wheel
+# Upgrade pip to compatible version
+RUN pip install --upgrade "pip<24.1"
 
-# Copy all project files
+# Set working directory
+WORKDIR /app
+
+# Copy your app code
 COPY . /app
 
-# Install dependencies
-RUN pip install -r requirements.txt
+# Install dependencies (ensure requirements.txt exists)
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose default port
-EXPOSE 5000
+# Expose port (you can change this as needed)
+EXPOSE 8000
 
-# Start the API server
+# Command to run your app
 CMD ["python", "apps/api_expose.py"]
