@@ -1,3 +1,4 @@
+# requirements.txt
+pip<24.1
 flask
 ai4bharat-transliteration
-
