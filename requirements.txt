@@ -5,4 +5,5 @@ setuptools<68
 
 # Required packages
 flask==2.2.5
-ai4bharat-transliteration==0.0.7
+ai4bharat-transliteration==1.1.3
+
