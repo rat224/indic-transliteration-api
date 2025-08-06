@@ -1,4 +1,4 @@
-# requirements.txt
 pip<24.1
+setuptools<68  # avoid build errors from latest setuptools
 flask
 ai4bharat-transliteration
