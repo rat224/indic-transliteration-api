@@ -2,9 +2,8 @@ services:
   - type: web
     name: transliteration-api
     env: python
-    plan: free
     buildCommand: |
-      pip install --upgrade "pip<24.1"
+      pip install pip==23.3.1
       pip install -r requirements.txt
-    startCommand: python apps/api_expose.py
+    startCommand: python app.py
     pythonVersion: 3.10.13
